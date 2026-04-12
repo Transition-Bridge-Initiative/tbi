@@ -61,12 +61,10 @@
         /* Hero Section */
         .hero-section {
             position: relative;
-            /* This applies your TBI color gradient over the local bridge image you just downloaded */
             background: linear-gradient(135deg, rgba(26, 52, 92, 0.85) 0%, rgba(103, 139, 101, 0.85) 100%), url('Background.jpg') center/cover no-repeat;
             color: white;
             padding: 200px 0 150px 0;
         }
-
         .hero-section h1 {
             font-size: 4rem;
             font-weight: 800;
@@ -101,9 +99,10 @@
             background-color: white;
         }
         .about-text {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             line-height: 1.8;
             color: #555;
+            text-align: left;
         }
 
         /* Services Cards */
@@ -160,6 +159,10 @@
             margin-bottom: 15px;
             color: var(--tbi-dark-blue);
         }
+        .service-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
 
         /* Footer */
         footer {
@@ -177,7 +180,7 @@
         }
 
         /* =========================================
-           MOBILE RESPONSIVENESS (Media Queries) 
+           MOBILE RESPONSIVENESS
            ========================================= */
         @media (max-width: 768px) {
             .hero-section {
@@ -221,7 +224,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#about">Our Story</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
                 </ul>
             </div>
@@ -233,7 +236,7 @@
             <div class="row">
                 <div class="col-lg-8" data-aos="fade-up" data-aos-duration="1000">
                     <h1>Transition Bridge Initiative</h1>
-                    <p class="mt-4">New Path. Stronger Future. Supporting youth through the most critical service gap into adult systems of care.</p>
+                    <p class="mt-4">New Path. Stronger Future.</p>
                 </div>
             </div>
         </div>
@@ -242,13 +245,18 @@
     <section id="about" class="about-section">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-lg-8 text-center" data-aos="fade-up" data-aos-duration="1000">
-                    <h2 class="section-title">Bridging the Gap</h2>
+                <div class="col-lg-10" data-aos="fade-up" data-aos-duration="1000">
+                    <h2 class="section-title text-center">About</h2>
                     <div class="title-divider mx-auto"></div>
+                    
                     <div class="about-text">
-                        <p class="mb-4">We support youth aged 17–22 in Calgary, Alberta who are living with physical, intellectual, or developmental disabilities, dual diagnoses, or co-occurring mental health and substance use challenges.</p>
-                        <p>When youth age out of Family Support for Children with Disabilities (FSCD) at 18, they often experience a severe gap before receiving adult supports through Persons with Developmental Disabilities (PDD). This delay can lead to critical challenges in housing, education, and therapy.</p>
-                        <p class="fw-bold mt-5" style="color: var(--tbi-sage-green); font-size: 1.25rem;">Our goal is to ensure youth remain supported, included, and connected to their communities as they move into adulthood.</p>
+                        <p>We support youth aged 17–22 in Calgary, Alberta who are living with physical, intellectual, or developmental disabilities, dual diagnoses, or co-occurring mental health and substance use challenges.</p>
+                        <p>Our focus is on helping young people as they transition from child-focused services into adult systems of care. When youth age out of Family Support for Children with Disabilities (FSCD) at 18, they often experience a gap before receiving adult supports through Persons with Developmental Disabilities (PDD). This delay in services can lead to challenges in accessing housing, education, employment, and therapy. We aim to bridge this service gap by promoting continuity of care and reducing disruptions during this important transition. Our goal is to ensure youth remain supported, included, and connected to their communities as they move into adulthood.</p>
+
+                        <h3 class="fw-bold mt-5 mb-3" style="color: var(--tbi-dark-blue);">Description of the Transition Bridge Initiative (TBI)</h3>
+                        <p>The Transition Bridge Initiative is an interim support program to address the most critical service gap between FSCD transitioning to the PDD service system. The program is designed to support youth ages 17-22 years old with developmental disabilities who are awaiting service adult funding through PDD.</p>
+                        <p>This agency targets individuals who may lack permanent housing, family support, or formal medical documentation with no established guardianship. Particularly for those individuals experiencing living instability, under supported living facility, or out of home program funded by FSCD who are at risk of homelessness, crisis, ineligibility of funding, and loss of continuity care.</p>
+                        <p class="fw-bold" style="color: var(--tbi-sage-green);">TBI will operate five days in a week following a community-based hybrid model merging in-center programming with community access, providing both development of skills and continuity of care.</p>
                     </div>
                 </div>
             </div>
@@ -258,16 +266,17 @@
     <section id="services" class="services-section">
         <div class="container">
             <div class="text-center mb-5" data-aos="fade-up">
-                <h2 class="section-title">Our Services</h2>
+                <h2 class="section-title">The programs core services include:</h2>
                 <div class="title-divider mx-auto"></div>
             </div>
             
-            <div class="row g-4">
+            <div class="row g-4 justify-content-center">
+                
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
                     <div class="service-card text-center text-md-start">
                         <span class="icon-number mx-auto mx-md-0">01</span>
-                        <h4>Transitional Housing</h4>
-                        <p class="text-muted">Short term safe housing which includes ongoing supervision and support ensuring safety and stability.</p>
+                        <h4>Transitional Housing / Supported living</h4>
+                        <p class="text-muted">this is short term safe housing (shared apartments, group homes, or emergency sheltered apartments) which includes ongoing supervision and support ensuring safety and stability. Daily routine supports involve meals, hygiene, budgeting, and laundry while having a caseworker or life skills mentor on site.</p>
                     </div>
                 </div>
 
@@ -275,15 +284,15 @@
                     <div class="service-card text-center text-md-start">
                         <span class="icon-number mx-auto mx-md-0">02</span>
                         <h4>Life Skills Training</h4>
-                        <p class="text-muted">Structured hands-on training sessions with living skills such as cooking, cleaning, shopping and budgeting.</p>
+                        <p class="text-muted">provides structured hands-on training sessions with living skills such as cooking, cleaning, shopping and budgeting, community navigation (transits), personal hygiene, social skills, and self-advocacy.</p>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
                     <div class="service-card text-center text-md-start">
                         <span class="icon-number mx-auto mx-md-0">03</span>
-                        <h4>Health Navigation</h4>
-                        <p class="text-muted">Connect youth to medical assessments and subsidized services through AHS and community clinics.</p>
+                        <h4>Health and Assessment Navigation</h4>
+                        <p class="text-muted">connect youth to medical assessments and subsidized services through AHS and community clinics to access medical professionals (psychologists, psychiatrists, developmental pediatricians, FASD and ASD clinics). This includes coordinating paperworks and consents for diagnostics while tracking functional limitations.</p>
                     </div>
                 </div>
 
@@ -291,25 +300,34 @@
                     <div class="service-card text-center text-md-start">
                         <span class="icon-number mx-auto mx-md-0">04</span>
                         <h4>Mental Health</h4>
-                        <p class="text-muted">Provision of trauma informed case managements for youths vulnerable to depression or social isolation.</p>
+                        <p class="text-muted">provision of trauma informed case managements for youths who are vulnerable with depression, behavioral crises, and social isolation, thus, access to counselling through community mental health is supported while waiting for formal diagnosis.</p>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
                     <div class="service-card text-center text-md-start">
                         <span class="icon-number mx-auto mx-md-0">05</span>
-                        <h4>Employment Readiness</h4>
-                        <p class="text-muted">Skill building in employment education such as pre-employment training, resume making, and interviews.</p>
+                        <h4>Employment readiness (prevocational training)</h4>
+                        <p class="text-muted">skill building in employment education such as pre-employment training (resume making, interview skills, and social skills), including life-skills integration or adult education program.</p>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
                     <div class="service-card text-center text-md-start">
                         <span class="icon-number mx-auto mx-md-0">06</span>
-                        <h4>Agency Matching</h4>
-                        <p class="text-muted">A program focusing on transition match hubs to navigate the adult disability system for a best fit support agency.</p>
+                        <h4>Case Management Navigation</h4>
+                        <p class="text-muted">assist individuals registering to government programs such as AISH, TAP, and Alberta Health. Help secure diagnostic assessments, coordinate to mental health support services, and keep records of functional progress for PDD eligibility and ongoing application.</p>
                     </div>
                 </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="700">
+                    <div class="service-card text-center text-md-start">
+                        <span class="icon-number mx-auto mx-md-0">07</span>
+                        <h4>Agency Matching</h4>
+                        <p class="text-muted">a program focusing on transition match hubs to navigate the adult disability system. This aspires to collaborate with existing adult long-term services such as SCOPE, Vecova, and DDRC aiming for a best fit disability support agency for an individual based on their diagnostics, comprehensive needs, and preferences assessment. This individualized matching reduces waitlist frustration, improves transition outcome, strengthen partnerships, and reduces the chances of service mismatch.</p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -320,7 +338,7 @@
                 <img src="logo.jpg" alt="TBI Logo" style="height: 75px;">
             </div>
             <h4 class="text-white mb-2" style="font-family: 'Montserrat', sans-serif;">Transition Bridge Initiative</h4>
-            <p class="text-white-50 mb-0">120, 17 Ave Southwest, Calgary, Alberta</p>
+            <p class="text-white-50 mb-0">120, 17 Ave Southwest</p>
         </div>
     </footer>
 

@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Transition Bridge Initiative (TBI)</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Montserrat:wght@500;700;800&display=swap" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        /* TBI Brand Palette */
+        :root {
+            --tbi-dark-blue: #1A345C; 
+            --tbi-sage-green: #678B65; 
+            --tbi-river-blue: #6996B3;
+            --tbi-bg-light: #f4f7f6;
+        }
+
+        /* Prevent side-scrolling on mobile */
+        html, body { 
+            font-family: 'Inter', sans-serif; 
+            color: #4a4a4a; 
+            background-color: white;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        h1, h2, h3, h4, h5, h6, .navbar-brand {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Navbar */
+        .navbar { 
+            background-color: rgba(255, 255, 255, 0.95); 
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05); 
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+        .navbar-brand img {
+            height: 65px;
+            object-fit: contain;
+        }
+        .nav-link {
+            color: var(--tbi-dark-blue) !important;
+            font-weight: 600;
+            margin-left: 25px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            transition: color 0.3s;
+        }
+        .nav-link:hover {
+            color: var(--tbi-sage-green) !important;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            background: linear-gradient(to right, rgba(26, 52, 92, 0.9), rgba(26, 52, 92, 0.7)), url('https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            color: white;
+            padding: 200px 0 150px 0;
+        }
+        .hero-section h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+        .hero-section p {
+            font-size: 1.3rem;
+            font-weight: 300;
+            color: #e0e0e0;
+            max-width: 600px;
+        }
+
+        /* Section Titles */
+        .section-title { 
+            color: var(--tbi-dark-blue); 
+            font-weight: 800; 
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+        }
+        .title-divider {
+            width: 80px;
+            height: 5px;
+            background-color: var(--tbi-sage-green);
+            margin-bottom: 40px;
+            border-radius: 5px;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 100px 0;
+            background-color: white;
+        }
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        /* Services Cards */
+        .services-section {
+            padding: 100px 0;
+            background-color: var(--tbi-bg-light);
+        }
+        .service-card { 
+            background: white;
+            border-radius: 20px;
+            border: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04); 
+            transition: all 0.4s ease;
+            padding: 40px 30px;
+            height: 100%;
+            position: relative;
+            z-index: 1;
+        }
+        .service-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--tbi-dark-blue), var(--tbi-sage-green));
+            border-radius: 20px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-15px);
+            color: white !important;
+        }
+        .service-card:hover::before {
+            opacity: 1;
+        }
+        .service-card:hover h4, .service-card:hover p, .service-card:hover .icon-number {
+            color: white !important;
+            transition: color 0.4s ease;
+        }
+        .icon-number {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--tbi-river-blue);
+            opacity: 0.3;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .service-card h4 {
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--tbi-dark-blue);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--tbi-dark-blue); 
+            color: white;
+            padding: 80px 0 50px 0;
+        }
+        .footer-logo-box {
+            background-color: white;
+            padding: 20px 30px;
+            border-radius: 15px;
+            display: inline-block;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        /* =========================================
+           MOBILE RESPONSIVENESS (Media Queries) 
+           ========================================= */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 120px 0 80px 0; /* Less empty space on phones */
+                text-align: center;
+            }
+            .hero-section h1 {
+                font-size: 2.5rem; /* Shrink massive title */
+            }
+            .hero-section p {
+                font-size: 1.1rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .about-section, .services-section {
+                padding: 60px 0; /* Reduce gap between sections */
+            }
+            .title-divider {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .about-text {
+                text-align: center;
+                margin-bottom: 30px;
+            }
+            .nav-link {
+                margin-left: 0;
+                padding: 10px 0;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="logo.jpg" alt="TBI Logo">
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#about">Our Story</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8" data-aos="fade-up" data-aos-duration="1000">
+                    <h1>Transition Bridge Initiative</h1>
+                    <p class="mt-4">New Path. Stronger Future. Supporting youth through the most critical service gap into adult systems of care.</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6" data-aos="fade-right" data-aos-duration="1000">
+                    <h2 class="section-title text-md-start text-center">Bridging the Gap</h2>
+                    <div class="title-divider ms-md-0"></div>
+                    <div class="about-text text-md-start text-center">
+                        <p class="mb-4">We support youth aged 17–22 in Calgary, Alberta who are living with physical, intellectual, or developmental disabilities, dual diagnoses, or co-occurring mental health and substance use challenges.</p>
+                        <p>When youth age out of Family Support for Children with Disabilities (FSCD) at 18, they often experience a severe gap before receiving adult supports through Persons with Developmental Disabilities (PDD). This delay can lead to critical challenges in housing, education, and therapy.</p>
+                        <p class="fw-bold" style="color: var(--tbi-sage-green);">Our goal is to ensure youth remain supported, included, and connected to their communities as they move into adulthood.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                    <div class="p-4 p-md-5 rounded-4 shadow-lg" style="background: linear-gradient(135deg, var(--tbi-dark-blue), var(--tbi-sage-green)); color: white; height: 100%;">
+                        <h3 class="fw-bold mb-4" style="font-family: 'Montserrat', sans-serif;">Understanding the Gap</h3>
+                        
+                        <div class="d-flex align-items-start mb-4">
+                            <div class="fs-1 fw-bold me-3 me-md-4" style="color: var(--tbi-river-blue); opacity: 0.9; line-height: 1;">18</div>
+                            <div>
+                                <h5 class="fw-bold mb-2">The Critical Age</h5>
+                                <p class="mb-0 text-white-50" style="font-size: 0.95rem;">When youth age out of FSCD at 18, they often experience a gap before receiving adult supports through PDD.</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-start mb-4">
+                            <div class="fs-1 fw-bold me-3 me-md-4" style="color: var(--tbi-river-blue); opacity: 0.9; line-height: 1;">⚠</div>
+                            <div>
+                                <h5 class="fw-bold mb-2">At-Risk Factors</h5>
+                                <p class="mb-0 text-white-50" style="font-size: 0.95rem;">This delay in services can lead to challenges in accessing housing, education, employment, and critical therapy.</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-start">
+                            <div class="fs-1 fw-bold me-3 me-md-4" style="color: var(--tbi-river-blue); opacity: 0.9; line-height: 1;">✓</div>
+                            <div>
+                                <h5 class="fw-bold mb-2">Our Solution</h5>
+                                <p class="mb-0 text-white-50" style="font-size: 0.95rem;">TBI provides a community-based hybrid model merging in-center programming with community access for continuity of care.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services-section">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Our Core Services</h2>
+                <div class="title-divider mx-auto"></div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card text-center text-md-start">
+                        <span class="icon-number mx-auto mx-md-0">01</span>
+                        <h4>Transitional Housing</h4>
+                        <p class="text-muted">Short term safe housing which includes ongoing supervision and support ensuring safety and stability.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card text-center text-md-start">
+                        <span class="icon-number mx-auto mx-md-0">02</span>
+                        <h4>Life Skills Training</h4>
+                        <p class="text-muted">Structured hands-on training sessions with living skills such as cooking, cleaning, shopping and budgeting.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-card text-center text-md-start">
+                        <span class="icon-number mx-auto mx-md-0">03</span>
+                        <h4>Health Navigation</h4>
+                        <p class="text-muted">Connect youth to medical assessments and subsidized services through AHS and community clinics.</p>
+                    </div>
+                </div>
+
+                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="service-card text-center text-md-start">
+                        <span class="icon-number mx-auto mx-md-0">04</span>
+                        <h4>Mental Health</h4>
+                        <p class="text-muted">Provision of trauma informed case managements for youths vulnerable to depression or social isolation.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                    <div class="service-card text-center text-md-start">
+                        <span class="icon-number mx-auto mx-md-0">05</span>
+                        <h4>Employment Readiness</h4>
+                        <p class="text-muted">Skill building in employment education such as pre-employment training, resume making, and interviews.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+                    <div class="service-card text-center text-md-start">
+                        <span class="icon-number mx-auto mx-md-0">06</span>
+                        <h4>Agency Matching</h4>
+                        <p class="text-muted">A program focusing on transition match hubs to navigate the adult disability system for a best fit support agency.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="text-center">
+        <div class="container">
+            <div class="footer-logo-box">
+                <img src="logo.jpg" alt="TBI Logo" style="height: 75px;">
+            </div>
+            <h4 class="text-white mb-2" style="font-family: 'Montserrat', sans-serif;">Transition Bridge Initiative</h4>
+            <p class="text-white-50 mb-0">120, 17 Ave Southwest, Calgary, Alberta</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize the scroll animations
+        AOS.init({
+            once: true,
+            offset: 50 // Trigger animation a bit earlier on mobile
+        });
+    </script>
+</body>
+</html>

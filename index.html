@@ -83,13 +83,43 @@
         .nav-link:hover::after { width: 100%; }
         .nav-link:hover { color: var(--tbi-sage-green) !important; }
 
-        /* Hero Section with Parallax Feel */
+        /* Hero Section with Video Background */
         .hero-section {
             position: relative;
-            background: linear-gradient(135deg, rgba(26, 52, 92, 0.85) 0%, rgba(103, 139, 101, 0.85) 100%), url('Background.jpg') center/cover no-repeat fixed;
             color: white;
             padding: 220px 0 200px 0;
+            overflow: hidden; /* Keeps the video contained */
         }
+        
+        /* New Video Styling */
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+        
+        /* New Gradient Overlay to keep text readable */
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(26, 52, 92, 0.85) 0%, rgba(103, 139, 101, 0.85) 100%);
+            z-index: 1;
+        }
+        
+        /* Ensure the text and wave divider sit ON TOP of the video and overlay */
+        .hero-section .container,
+        .custom-shape-divider-bottom {
+            position: relative;
+            z-index: 2;
+        }
+
         .hero-content-box {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
@@ -171,7 +201,7 @@
             height: 100%;
             position: relative;
             z-index: 1;
-            overflow: hidden; /* Keeps the giant numbers inside */
+            overflow: hidden; 
         }
         /* The Giant Watermark Number */
         .watermark-number {
@@ -269,14 +299,14 @@
            ========================================= */
         @media (max-width: 768px) {
             .navbar-brand img { height: 85px; }
-            .hero-section { padding: 140px 0 100px 0; text-align: center; background-attachment: scroll; }
+            .hero-section { padding: 140px 0 100px 0; text-align: center; }
             .hero-content-box { padding: 25px; backdrop-filter: blur(5px); }
             .hero-section h1 { font-size: 2.8rem; }
             .section-title { font-size: 2.2rem; }
             .about-section, .services-section { padding: 80px 0; }
             .title-divider { margin-left: auto; margin-right: auto; }
             .nav-link { margin-left: 0; padding: 12px 0; text-align: center; }
-            .floating-card { animation: none; } /* Disable floating on mobile to prevent jitter */
+            .floating-card { animation: none; }
         }
     </style>
 </head>
@@ -301,6 +331,14 @@
     </nav>
 
     <header class="hero-section">
+        
+        <video autoplay muted loop playsinline class="hero-video">
+            <source src="Photo_To_Animated_Website_Video.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+        </video>
+        
+        <div class="hero-overlay"></div>
+
         <div class="container">
             <div class="row">
                 <div class="col-lg-7" data-aos="fade-up" data-aos-duration="1200">
@@ -311,6 +349,7 @@
                 </div>
             </div>
         </div>
+        
         <div class="custom-shape-divider-bottom">
             <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
                 <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>

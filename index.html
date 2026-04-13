@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Transition Bridge Initiative (TBI)</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Montserrat:wght@500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@500;700;800;900&display=swap" rel="stylesheet">
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
@@ -18,9 +20,18 @@
             --tbi-sage-green: #678B65; 
             --tbi-river-blue: #6996B3;
             --tbi-bg-light: #f4f7f6;
+            --glass-bg: rgba(255, 255, 255, 0.85);
         }
 
-        /* Prevent side-scrolling on mobile */
+        /* Custom Selection Highlight */
+        ::selection { background: var(--tbi-sage-green); color: white; }
+
+        /* Custom Themed Scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: var(--tbi-dark-blue); border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--tbi-sage-green); }
+
         html, body { 
             font-family: 'Inter', sans-serif; 
             color: #4a4a4a; 
@@ -33,201 +44,239 @@
             font-family: 'Montserrat', sans-serif;
         }
 
-        /* Navbar */
+        /* Glassmorphism Navbar */
         .navbar { 
-            background-color: rgba(255, 255, 255, 0.95); 
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.05); 
-            padding: 5px 0; /* Reduced padding to fit the larger logo sleekly */
-            transition: all 0.3s ease;
+            background-color: var(--glass-bg); 
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 5px 0; 
+            transition: all 0.4s ease;
         }
         .navbar-brand img {
-            height: 120px; /* INCREASED LOGO SIZE (was 90px) */
+            height: 120px; 
             object-fit: contain;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
         }
         .nav-link {
             color: var(--tbi-dark-blue) !important;
-            font-weight: 600;
+            font-weight: 700;
             margin-left: 25px;
             text-transform: uppercase;
             font-size: 0.85rem;
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
+            position: relative;
             transition: color 0.3s;
         }
-        .nav-link:hover {
-            color: var(--tbi-sage-green) !important;
+        /* Animated underline on hover for links */
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--tbi-sage-green);
+            transition: width 0.3s ease;
         }
+        .nav-link:hover::after { width: 100%; }
+        .nav-link:hover { color: var(--tbi-sage-green) !important; }
 
-        /* Hero Section */
+        /* Hero Section with Parallax Feel */
         .hero-section {
             position: relative;
-            background: linear-gradient(135deg, rgba(26, 52, 92, 0.85) 0%, rgba(103, 139, 101, 0.85) 100%), url('Background.jpg') center/cover no-repeat;
+            background: linear-gradient(135deg, rgba(26, 52, 92, 0.85) 0%, rgba(103, 139, 101, 0.85) 100%), url('background.jpg') center/cover no-repeat fixed;
             color: white;
-            padding: 200px 0 150px 0;
+            padding: 220px 0 200px 0;
+        }
+        .hero-content-box {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
         }
         .hero-section h1 {
-            font-size: 4rem;
-            font-weight: 800;
+            font-size: 4.5rem;
+            font-weight: 900;
             line-height: 1.1;
             margin-bottom: 20px;
+            letter-spacing: -1px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
         }
         .hero-section p {
             font-size: 1.3rem;
             font-weight: 300;
-            color: #e0e0e0;
-            max-width: 600px;
+            color: #f8f9fa;
         }
+
+        /* SVG Shape Divider separating Hero and About */
+        .custom-shape-divider-bottom {
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            transform: rotate(180deg);
+        }
+        .custom-shape-divider-bottom svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 80px;
+        }
+        .custom-shape-divider-bottom .shape-fill { fill: #ffffff; }
 
         /* Section Titles */
         .section-title { 
             color: var(--tbi-dark-blue); 
-            font-weight: 800; 
-            margin-bottom: 20px;
-            font-size: 2.5rem;
+            font-weight: 900; 
+            margin-bottom: 15px;
+            font-size: 2.8rem;
+            letter-spacing: -1px;
         }
         .title-divider {
-            width: 80px;
-            height: 5px;
-            background-color: var(--tbi-sage-green);
+            width: 100px;
+            height: 6px;
+            background: linear-gradient(90deg, var(--tbi-dark-blue), var(--tbi-sage-green));
             margin-bottom: 40px;
             border-radius: 5px;
         }
 
         /* About Section */
-        .about-section {
-            padding: 100px 0;
-            background-color: white;
+        .about-section { padding: 120px 0 100px 0; background-color: white; }
+        .about-text { font-size: 1.15rem; line-height: 1.9; color: #555; text-align: left; }
+        
+        /* Continuous Floating Animation for Cards */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
         }
-        .about-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #555;
-            text-align: left;
-        }
+        .floating-card { animation: float 6s ease-in-out infinite; }
+        .floating-card.delay { animation-delay: 3s; }
 
-        /* Services Cards */
-        .services-section {
-            padding: 100px 0;
-            background-color: var(--tbi-bg-light);
-        }
+        /* Premium Services Cards */
+        .services-section { padding: 120px 0; background-color: var(--tbi-bg-light); position: relative; }
         .service-card { 
             background: white;
             border-radius: 20px;
-            border: none;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.04); 
-            transition: all 0.4s ease;
+            border: 1px solid rgba(0,0,0,0.03);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
             padding: 40px 30px;
             height: 100%;
             position: relative;
             z-index: 1;
+            overflow: hidden; /* Keeps the giant numbers inside */
         }
-        .service-card::before {
-            content: "";
+        /* The Giant Watermark Number */
+        .watermark-number {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--tbi-dark-blue), var(--tbi-sage-green));
-            border-radius: 20px;
+            bottom: -30px;
+            right: -10px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 8rem;
+            font-weight: 900;
+            color: var(--tbi-river-blue);
+            opacity: 0.05;
             z-index: -1;
-            opacity: 0;
-            transition: opacity 0.4s ease;
+            transition: all 0.5s ease;
         }
         .service-card:hover {
-            transform: translateY(-15px);
-            color: white !important;
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(26, 52, 92, 0.15);
+            border-color: var(--tbi-sage-green);
         }
-        .service-card:hover::before {
-            opacity: 1;
+        .service-card:hover .watermark-number {
+            transform: scale(1.2) translateY(-10px);
+            opacity: 0.15;
+            color: var(--tbi-sage-green);
         }
-        .service-card:hover h4, .service-card:hover p, .service-card:hover .icon-number {
-            color: white !important;
-            transition: color 0.4s ease;
-        }
-        .icon-number {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--tbi-river-blue);
-            opacity: 0.3;
-            margin-bottom: 15px;
-            display: block;
-        }
-        .service-card h4 {
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: var(--tbi-dark-blue);
-        }
-        .service-card p {
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
+        .service-card h4 { font-weight: 800; margin-bottom: 15px; color: var(--tbi-dark-blue); }
+        .service-card p { font-size: 0.95rem; line-height: 1.7; color: #666; }
 
-        /* Contact Section Form Styling */
+        /* Contact Section */
+        .contact-box {
+            background: white;
+            border-radius: 20px;
+            border-top: 6px solid var(--tbi-dark-blue);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+        }
+        .contact-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background-color: rgba(103, 139, 101, 0.1);
+            color: var(--tbi-sage-green);
+            font-size: 1.5rem;
+        }
         .form-control, .form-select {
-            border-radius: 8px;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            background-color: white;
+            border-radius: 10px;
+            padding: 14px 18px;
+            border: 1px solid #e0e0e0;
+            background-color: #fafafa;
+            transition: all 0.3s;
         }
         .form-control:focus, .form-select:focus {
+            background-color: white;
             border-color: var(--tbi-sage-green);
-            box-shadow: 0 0 0 0.25rem rgba(103, 139, 101, 0.25);
+            box-shadow: 0 0 0 4px rgba(103, 139, 101, 0.15);
+        }
+        .btn-submit {
+            background: linear-gradient(135deg, var(--tbi-sage-green), var(--tbi-dark-blue));
+            border: none;
+            color: white;
+            padding: 16px;
+            border-radius: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: all 0.4s ease;
+        }
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(26, 52, 92, 0.3);
+            color: white;
         }
 
         /* Footer */
         footer {
-            background-color: var(--tbi-dark-blue); 
+            background: linear-gradient(to bottom, #112240, var(--tbi-dark-blue)); 
             color: white;
             padding: 80px 0 50px 0;
+            position: relative;
         }
         .footer-logo-box {
             background-color: white;
-            padding: 20px 30px;
-            border-radius: 15px;
+            padding: 25px 40px;
+            border-radius: 20px;
             display: inline-block;
-            margin-bottom: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            margin-bottom: 30px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
         }
-        .footer-logo-box img {
-            height: 100px; 
-            object-fit: contain;
-        }
+        .footer-logo-box:hover { transform: scale(1.05); }
+        .footer-logo-box img { height: 110px; object-fit: contain; }
 
         /* =========================================
            MOBILE RESPONSIVENESS
            ========================================= */
         @media (max-width: 768px) {
-            .navbar-brand img {
-                height: 85px; /* Substantially larger on mobile, while still fitting the screen */
-            }
-            .hero-section {
-                padding: 120px 0 80px 0; 
-                text-align: center;
-            }
-            .hero-section h1 {
-                font-size: 2.5rem; 
-            }
-            .hero-section p {
-                font-size: 1.1rem;
-                margin: 0 auto;
-            }
-            .section-title {
-                font-size: 2rem;
-            }
-            .about-section, .services-section {
-                padding: 60px 0; 
-            }
-            .title-divider {
-                margin-left: auto;
-                margin-right: auto;
-            }
-            .nav-link {
-                margin-left: 0;
-                padding: 10px 0;
-                text-align: center;
-            }
+            .navbar-brand img { height: 85px; }
+            .hero-section { padding: 140px 0 100px 0; text-align: center; background-attachment: scroll; }
+            .hero-content-box { padding: 25px; backdrop-filter: blur(5px); }
+            .hero-section h1 { font-size: 2.8rem; }
+            .section-title { font-size: 2.2rem; }
+            .about-section, .services-section { padding: 80px 0; }
+            .title-divider { margin-left: auto; margin-right: auto; }
+            .nav-link { margin-left: 0; padding: 12px 0; text-align: center; }
+            .floating-card { animation: none; } /* Disable floating on mobile to prevent jitter */
         }
     </style>
 </head>
@@ -238,8 +287,8 @@
             <a class="navbar-brand" href="#">
                 <img src="logo.jpg" alt="TBI Logo">
             </a>
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
+            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="bi bi-list fs-1 text-dark"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
@@ -254,11 +303,18 @@
     <header class="hero-section">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8" data-aos="fade-up" data-aos-duration="1000">
-                    <h1>Transition Bridge Initiative</h1>
-                    <p class="mt-4">New Path. Stronger Future.</p>
+                <div class="col-lg-7" data-aos="fade-up" data-aos-duration="1200">
+                    <div class="hero-content-box">
+                        <h1>Transition Bridge Initiative</h1>
+                        <p class="mt-3 mb-0">New Path. Stronger Future.</p>
+                    </div>
                 </div>
             </div>
+        </div>
+        <div class="custom-shape-divider-bottom">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+            </svg>
         </div>
     </header>
 
@@ -273,23 +329,29 @@
                         <p>We support youth aged 17–22 in Calgary, Alberta who are living with physical, intellectual, or developmental disabilities, dual diagnoses, or co-occurring mental health and substance use challenges.</p>
                         <p>Our focus is on helping young people as they transition from child-focused services into adult systems of care. When youth age out of Family Support for Children with Disabilities (FSCD) at 18, they often experience a gap before receiving adult supports through Persons with Developmental Disabilities (PDD). This delay in services can lead to challenges in accessing housing, education, employment, and therapy. We aim to bridge this service gap by promoting continuity of care and reducing disruptions during this important transition. Our goal is to ensure youth remain supported, included, and connected to their communities as they move into adulthood.</p>
 
-                        <h3 class="fw-bold mt-5 mb-3" style="color: var(--tbi-dark-blue);">Description of the Transition Bridge Initiative (TBI)</h3>
+                        <h3 class="fw-bold mt-5 mb-3" style="color: var(--tbi-dark-blue); font-family: 'Montserrat', sans-serif;">Description of the Transition Bridge Initiative (TBI)</h3>
                         <p>The Transition Bridge Initiative is an interim support program to address the most critical service gap between FSCD transitioning to the PDD service system. The program is designed to support youth ages 17-22 years old with developmental disabilities who are awaiting service adult funding through PDD.</p>
                         <p>This agency targets individuals who may lack permanent housing, family support, or formal medical documentation with no established guardianship. Particularly for those individuals experiencing living instability, under supported living facility, or out of home program funded by FSCD who are at risk of homelessness, crisis, ineligibility of funding, and loss of continuity care.</p>
-                        <p class="fw-bold" style="color: var(--tbi-sage-green);">TBI will operate five days in a week following a community-based hybrid model merging in-center programming with community access, providing both development of skills and continuity of care.</p>
+                        <p class="fw-bold p-4 mt-4 rounded-4" style="background-color: rgba(103, 139, 101, 0.05); color: var(--tbi-sage-green); border-left: 4px solid var(--tbi-sage-green);">TBI will operate five days in a week following a community-based hybrid model merging in-center programming with community access, providing both development of skills and continuity of care.</p>
                     </div>
 
                     <div class="row mt-5 g-4">
-                        <div class="col-md-6" data-aos="fade-right" data-aos-delay="100">
-                            <div class="p-4 rounded-4 shadow-sm h-100" style="border-left: 5px solid var(--tbi-sage-green); background-color: var(--tbi-bg-light);">
-                                <h4 class="fw-bold mb-3" style="color: var(--tbi-dark-blue);">Vision</h4>
-                                <p class="mb-0 text-muted" style="line-height: 1.7;">To create a future where every youth with a disability achieves a successful transition to adulthood, equipped with the confidence to live a safe and independent life.</p>
+                        <div class="col-md-6" data-aos="zoom-in-right" data-aos-delay="100">
+                            <div class="p-5 rounded-4 shadow-sm h-100 floating-card" style="border-top: 5px solid var(--tbi-sage-green); background-color: var(--tbi-bg-light);">
+                                <div class="d-flex align-items-center mb-3">
+                                    <i class="bi bi-eye fs-2 me-3" style="color: var(--tbi-sage-green);"></i>
+                                    <h3 class="fw-bold mb-0" style="color: var(--tbi-dark-blue); font-family: 'Montserrat', sans-serif;">Vision</h3>
+                                </div>
+                                <p class="mb-0 text-muted" style="line-height: 1.8;">To create a future where every youth with a disability achieves a successful transition to adulthood, equipped with the confidence to live a safe and independent life.</p>
                             </div>
                         </div>
-                        <div class="col-md-6" data-aos="fade-left" data-aos-delay="200">
-                            <div class="p-4 rounded-4 shadow-sm h-100" style="border-left: 5px solid var(--tbi-dark-blue); background-color: var(--tbi-bg-light);">
-                                <h4 class="fw-bold mb-3" style="color: var(--tbi-dark-blue);">Mission</h4>
-                                <p class="mb-0 text-muted" style="line-height: 1.7;">The Transition Bridge Initiative empowers youth with disabilities to move safely into adult services by providing housing, life skills, and hands-on support. Guided by respect and safety, our mission is to ensure no young person loses their support system as they build an independent life.</p>
+                        <div class="col-md-6" data-aos="zoom-in-left" data-aos-delay="200">
+                            <div class="p-5 rounded-4 shadow-sm h-100 floating-card delay" style="border-top: 5px solid var(--tbi-dark-blue); background-color: var(--tbi-bg-light);">
+                                <div class="d-flex align-items-center mb-3">
+                                    <i class="bi bi-bullseye fs-2 me-3" style="color: var(--tbi-dark-blue);"></i>
+                                    <h3 class="fw-bold mb-0" style="color: var(--tbi-dark-blue); font-family: 'Montserrat', sans-serif;">Mission</h3>
+                                </div>
+                                <p class="mb-0 text-muted" style="line-height: 1.8;">The Transition Bridge Initiative empowers youth with disabilities to move safely into adult services by providing housing, life skills, and hands-on support. Guided by respect and safety, our mission is to ensure no young person loses their support system as they build an independent life.</p>
                             </div>
                         </div>
                     </div>
@@ -308,52 +370,52 @@
             
             <div class="row g-4 justify-content-center">
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                    <div class="service-card text-center text-md-start">
-                        <span class="icon-number mx-auto mx-md-0">01</span>
+                    <div class="service-card">
+                        <span class="watermark-number">01</span>
                         <h4>Transitional Housing / Supported living</h4>
-                        <p class="text-muted">this is short term safe housing (shared apartments, group homes, or emergency sheltered apartments) which includes ongoing supervision and support ensuring safety and stability. Daily routine supports involve meals, hygiene, budgeting, and laundry while having a caseworker or life skills mentor on site.</p>
+                        <p>this is short term safe housing (shared apartments, group homes, or emergency sheltered apartments) which includes ongoing supervision and support ensuring safety and stability. Daily routine supports involve meals, hygiene, budgeting, and laundry while having a caseworker or life skills mentor on site.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                    <div class="service-card text-center text-md-start">
-                        <span class="icon-number mx-auto mx-md-0">02</span>
+                    <div class="service-card">
+                        <span class="watermark-number">02</span>
                         <h4>Life Skills Training</h4>
-                        <p class="text-muted">provides structured hands-on training sessions with living skills such as cooking, cleaning, shopping and budgeting, community navigation (transits), personal hygiene, social skills, and self-advocacy.</p>
+                        <p>provides structured hands-on training sessions with living skills such as cooking, cleaning, shopping and budgeting, community navigation (transits), personal hygiene, social skills, and self-advocacy.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                    <div class="service-card text-center text-md-start">
-                        <span class="icon-number mx-auto mx-md-0">03</span>
+                    <div class="service-card">
+                        <span class="watermark-number">03</span>
                         <h4>Health and Assessment Navigation</h4>
-                        <p class="text-muted">connect youth to medical assessments and subsidized services through AHS and community clinics to access medical professionals (psychologists, psychiatrists, developmental pediatricians, FASD and ASD clinics). This includes coordinating paperworks and consents for diagnostics while tracking functional limitations.</p>
+                        <p>connect youth to medical assessments and subsidized services through AHS and community clinics to access medical professionals (psychologists, psychiatrists, developmental pediatricians, FASD and ASD clinics). This includes coordinating paperworks and consents for diagnostics while tracking functional limitations.</p>
                     </div>
                 </div>
                  <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
-                    <div class="service-card text-center text-md-start">
-                        <span class="icon-number mx-auto mx-md-0">04</span>
+                    <div class="service-card">
+                        <span class="watermark-number">04</span>
                         <h4>Mental Health</h4>
-                        <p class="text-muted">provision of trauma informed case managements for youths who are vulnerable with depression, behavioral crises, and social isolation, thus, access to counselling through community mental health is supported while waiting for formal diagnosis.</p>
+                        <p>provision of trauma informed case managements for youths who are vulnerable with depression, behavioral crises, and social isolation, thus, access to counselling through community mental health is supported while waiting for formal diagnosis.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
-                    <div class="service-card text-center text-md-start">
-                        <span class="icon-number mx-auto mx-md-0">05</span>
+                    <div class="service-card">
+                        <span class="watermark-number">05</span>
                         <h4>Employment readiness (prevocational training)</h4>
-                        <p class="text-muted">skill building in employment education such as pre-employment training (resume making, interview skills, and social skills), including life-skills integration or adult education program.</p>
+                        <p>skill building in employment education such as pre-employment training (resume making, interview skills, and social skills), including life-skills integration or adult education program.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
-                    <div class="service-card text-center text-md-start">
-                        <span class="icon-number mx-auto mx-md-0">06</span>
+                    <div class="service-card">
+                        <span class="watermark-number">06</span>
                         <h4>Case Management Navigation</h4>
-                        <p class="text-muted">assist individuals registering to government programs such as AISH, TAP, and Alberta Health. Help secure diagnostic assessments, coordinate to mental health support services, and keep records of functional progress for PDD eligibility and ongoing application.</p>
+                        <p>assist individuals registering to government programs such as AISH, TAP, and Alberta Health. Help secure diagnostic assessments, coordinate to mental health support services, and keep records of functional progress for PDD eligibility and ongoing application.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="700">
-                    <div class="service-card text-center text-md-start">
-                        <span class="icon-number mx-auto mx-md-0">07</span>
+                    <div class="service-card">
+                        <span class="watermark-number">07</span>
                         <h4>Agency Matching</h4>
-                        <p class="text-muted">a program focusing on transition match hubs to navigate the adult disability system. This aspires to collaborate with existing adult long-term services such as SCOPE, Vecova, and DDRC aiming for a best fit disability support agency for an individual based on their diagnostics, comprehensive needs, and preferences assessment.</p>
+                        <p>a program focusing on transition match hubs to navigate the adult disability system. This aspires to collaborate with existing adult long-term services such as SCOPE, Vecova, and DDRC aiming for a best fit disability support agency for an individual based on their diagnostics, comprehensive needs, and preferences assessment.</p>
                     </div>
                 </div>
             </div>
@@ -369,27 +431,27 @@
             
             <div class="row g-5 justify-content-center">
                 <div class="col-lg-4" data-aos="fade-right" data-aos-delay="100">
-                    <div class="p-4 rounded-4 shadow-sm h-100" style="background-color: var(--tbi-bg-light); border-top: 5px solid var(--tbi-dark-blue);">
-                        <h4 class="fw-bold mb-4" style="color: var(--tbi-dark-blue);">Main Office</h4>
+                    <div class="p-5 contact-box h-100">
+                        <h4 class="fw-bold mb-5" style="color: var(--tbi-dark-blue);">Main Office</h4>
                         
-                        <div class="d-flex align-items-start mb-4">
-                            <div class="fs-4 me-3" style="color: var(--tbi-sage-green);">📍</div>
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="contact-icon me-4"><i class="bi bi-geo-alt-fill"></i></div>
                             <div>
                                 <h6 class="fw-bold mb-1 text-dark">Address</h6>
                                 <p class="text-muted mb-0">120, 17 Ave Southwest<br>Calgary, Alberta</p>
                             </div>
                         </div>
 
-                        <div class="d-flex align-items-start mb-4">
-                            <div class="fs-4 me-3" style="color: var(--tbi-sage-green);">📞</div>
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="contact-icon me-4"><i class="bi bi-telephone-fill"></i></div>
                             <div>
                                 <h6 class="fw-bold mb-1 text-dark">Phone</h6>
                                 <p class="text-muted mb-0">587-123-4567</p>
                             </div>
                         </div>
 
-                        <div class="d-flex align-items-start">
-                            <div class="fs-4 me-3" style="color: var(--tbi-sage-green);">📠</div>
+                        <div class="d-flex align-items-center">
+                            <div class="contact-icon me-4"><i class="bi bi-printer-fill"></i></div>
                             <div>
                                 <h6 class="fw-bold mb-1 text-dark">Fax</h6>
                                 <p class="text-muted mb-0">587-123-4578</p>
@@ -399,12 +461,12 @@
                 </div>
 
                 <div class="col-lg-7" data-aos="fade-left" data-aos-delay="200">
-                    <div class="p-4 p-md-5 rounded-4 shadow-sm" style="background-color: var(--tbi-bg-light);">
+                    <div class="p-4 p-md-5 rounded-4 shadow-sm" style="background-color: #f8f9fa; border: 1px solid #eee;">
                         <h4 class="fw-bold mb-3" style="color: var(--tbi-dark-blue);">Send a Message</h4>
                         <p class="text-muted mb-4">You can leave a message using the contact form below.</p>
                         
                         <form>
-                            <div class="row g-3">
+                            <div class="row g-4">
                                 <div class="col-md-6">
                                     <label class="form-label fw-bold small text-dark">Name</label>
                                     <input type="text" class="form-control" placeholder="Your Name" required>
@@ -432,7 +494,7 @@
                                     <textarea class="form-control" rows="5" placeholder="How can we help you?" required></textarea>
                                 </div>
                                 <div class="col-12 mt-4">
-                                    <button type="submit" class="btn w-100 py-3 fw-bold text-white shadow-sm" style="background-color: var(--tbi-sage-green); border-radius: 8px; transition: 0.3s;">Send Message</button>
+                                    <button type="submit" class="btn btn-submit w-100">SEND MESSAGE <i class="bi bi-arrow-right ms-2"></i></button>
                                 </div>
                             </div>
                         </form>
@@ -447,17 +509,23 @@
             <div class="footer-logo-box">
                 <img src="logo.jpg" alt="TBI Logo">
             </div>
-            <h4 class="text-white mb-2" style="font-family: 'Montserrat', sans-serif;">Transition Bridge Initiative</h4>
-            <p class="text-white-50 mb-0">120, 17 Ave Southwest, Calgary, Alberta</p>
+            <h3 class="text-white mb-2 fw-bold" style="font-family: 'Montserrat', sans-serif;">Transition Bridge Initiative</h3>
+            <p class="text-white-50 mb-0" style="font-size: 1.1rem;">120, 17 Ave Southwest, Calgary, Alberta</p>
+            <div class="mt-4 pt-4 border-top border-secondary text-white-50 small">
+                &copy; 2026 Transition Bridge Initiative. All rights reserved.
+            </div>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        // Initialize animations with premium settings
         AOS.init({
             once: true,
-            offset: 50 
+            offset: 80,
+            duration: 800,
+            easing: 'ease-out-cubic'
         });
     </script>
 </body>

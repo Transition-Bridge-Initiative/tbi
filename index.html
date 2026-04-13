@@ -38,11 +38,11 @@
             background-color: rgba(255, 255, 255, 0.95); 
             backdrop-filter: blur(10px);
             box-shadow: 0 2px 20px rgba(0,0,0,0.05); 
-            padding: 15px 0;
+            padding: 10px 0; /* Reduced padding slightly to accommodate bigger logo */
             transition: all 0.3s ease;
         }
         .navbar-brand img {
-            height: 65px;
+            height: 90px; /* INCREASED LOGO SIZE HERE (was 65px) */
             object-fit: contain;
         }
         .nav-link {
@@ -164,6 +164,18 @@
             line-height: 1.6;
         }
 
+        /* Contact Section Form Styling */
+        .form-control, .form-select {
+            border-radius: 8px;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            background-color: white;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: var(--tbi-sage-green);
+            box-shadow: 0 0 0 0.25rem rgba(103, 139, 101, 0.25);
+        }
+
         /* Footer */
         footer {
             background-color: var(--tbi-dark-blue); 
@@ -178,11 +190,18 @@
             margin-bottom: 25px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
+        .footer-logo-box img {
+            height: 100px; /* INCREASED LOGO SIZE HERE (was 75px) */
+            object-fit: contain;
+        }
 
         /* =========================================
            MOBILE RESPONSIVENESS
            ========================================= */
         @media (max-width: 768px) {
+            .navbar-brand img {
+                height: 70px; /* Slightly smaller on phones so it fits */
+            }
             .hero-section {
                 padding: 120px 0 80px 0; 
                 text-align: center;
@@ -226,6 +245,7 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                 </ul>
             </div>
         </div>
@@ -246,7 +266,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-10" data-aos="fade-up" data-aos-duration="1000">
-                    <h2 class="section-title text-center">About</h2>
+                    <h2 class="section-title text-center">About Us</h2>
                     <div class="title-divider mx-auto"></div>
                     
                     <div class="about-text">
@@ -258,6 +278,22 @@
                         <p>This agency targets individuals who may lack permanent housing, family support, or formal medical documentation with no established guardianship. Particularly for those individuals experiencing living instability, under supported living facility, or out of home program funded by FSCD who are at risk of homelessness, crisis, ineligibility of funding, and loss of continuity care.</p>
                         <p class="fw-bold" style="color: var(--tbi-sage-green);">TBI will operate five days in a week following a community-based hybrid model merging in-center programming with community access, providing both development of skills and continuity of care.</p>
                     </div>
+
+                    <div class="row mt-5 g-4">
+                        <div class="col-md-6" data-aos="fade-right" data-aos-delay="100">
+                            <div class="p-4 rounded-4 shadow-sm h-100" style="border-left: 5px solid var(--tbi-sage-green); background-color: var(--tbi-bg-light);">
+                                <h4 class="fw-bold mb-3" style="color: var(--tbi-dark-blue);">Vision</h4>
+                                <p class="mb-0 text-muted" style="line-height: 1.7;">To create a future where every youth with a disability achieves a successful transition to adulthood, equipped with the confidence to live a safe and independent life.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6" data-aos="fade-left" data-aos-delay="200">
+                            <div class="p-4 rounded-4 shadow-sm h-100" style="border-left: 5px solid var(--tbi-dark-blue); background-color: var(--tbi-bg-light);">
+                                <h4 class="fw-bold mb-3" style="color: var(--tbi-dark-blue);">Mission</h4>
+                                <p class="mb-0 text-muted" style="line-height: 1.7;">The Transition Bridge Initiative empowers youth with disabilities to move safely into adult services by providing housing, life skills, and hands-on support. Guided by respect and safety, our mission is to ensure no young person loses their support system as they build an independent life.</p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -271,7 +307,6 @@
             </div>
             
             <div class="row g-4 justify-content-center">
-                
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
                     <div class="service-card text-center text-md-start">
                         <span class="icon-number mx-auto mx-md-0">01</span>
@@ -279,7 +314,6 @@
                         <p class="text-muted">this is short term safe housing (shared apartments, group homes, or emergency sheltered apartments) which includes ongoing supervision and support ensuring safety and stability. Daily routine supports involve meals, hygiene, budgeting, and laundry while having a caseworker or life skills mentor on site.</p>
                     </div>
                 </div>
-
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
                     <div class="service-card text-center text-md-start">
                         <span class="icon-number mx-auto mx-md-0">02</span>
@@ -287,7 +321,6 @@
                         <p class="text-muted">provides structured hands-on training sessions with living skills such as cooking, cleaning, shopping and budgeting, community navigation (transits), personal hygiene, social skills, and self-advocacy.</p>
                     </div>
                 </div>
-
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
                     <div class="service-card text-center text-md-start">
                         <span class="icon-number mx-auto mx-md-0">03</span>
@@ -295,7 +328,6 @@
                         <p class="text-muted">connect youth to medical assessments and subsidized services through AHS and community clinics to access medical professionals (psychologists, psychiatrists, developmental pediatricians, FASD and ASD clinics). This includes coordinating paperworks and consents for diagnostics while tracking functional limitations.</p>
                     </div>
                 </div>
-
                  <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
                     <div class="service-card text-center text-md-start">
                         <span class="icon-number mx-auto mx-md-0">04</span>
@@ -303,7 +335,6 @@
                         <p class="text-muted">provision of trauma informed case managements for youths who are vulnerable with depression, behavioral crises, and social isolation, thus, access to counselling through community mental health is supported while waiting for formal diagnosis.</p>
                     </div>
                 </div>
-
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
                     <div class="service-card text-center text-md-start">
                         <span class="icon-number mx-auto mx-md-0">05</span>
@@ -311,7 +342,6 @@
                         <p class="text-muted">skill building in employment education such as pre-employment training (resume making, interview skills, and social skills), including life-skills integration or adult education program.</p>
                     </div>
                 </div>
-
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
                     <div class="service-card text-center text-md-start">
                         <span class="icon-number mx-auto mx-md-0">06</span>
@@ -319,15 +349,95 @@
                         <p class="text-muted">assist individuals registering to government programs such as AISH, TAP, and Alberta Health. Help secure diagnostic assessments, coordinate to mental health support services, and keep records of functional progress for PDD eligibility and ongoing application.</p>
                     </div>
                 </div>
-
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="700">
                     <div class="service-card text-center text-md-start">
                         <span class="icon-number mx-auto mx-md-0">07</span>
                         <h4>Agency Matching</h4>
-                        <p class="text-muted">a program focusing on transition match hubs to navigate the adult disability system. This aspires to collaborate with existing adult long-term services such as SCOPE, Vecova, and DDRC aiming for a best fit disability support agency for an individual based on their diagnostics, comprehensive needs, and preferences assessment. This individualized matching reduces waitlist frustration, improves transition outcome, strengthen partnerships, and reduces the chances of service mismatch.</p>
+                        <p class="text-muted">a program focusing on transition match hubs to navigate the adult disability system. This aspires to collaborate with existing adult long-term services such as SCOPE, Vecova, and DDRC aiming for a best fit disability support agency for an individual based on their diagnostics, comprehensive needs, and preferences assessment.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-5" style="background-color: white;">
+        <div class="container py-5">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Contact Us</h2>
+                <div class="title-divider mx-auto"></div>
+            </div>
+            
+            <div class="row g-5 justify-content-center">
+                <div class="col-lg-4" data-aos="fade-right" data-aos-delay="100">
+                    <div class="p-4 rounded-4 shadow-sm h-100" style="background-color: var(--tbi-bg-light); border-top: 5px solid var(--tbi-dark-blue);">
+                        <h4 class="fw-bold mb-4" style="color: var(--tbi-dark-blue);">Main Office</h4>
+                        
+                        <div class="d-flex align-items-start mb-4">
+                            <div class="fs-4 me-3" style="color: var(--tbi-sage-green);">📍</div>
+                            <div>
+                                <h6 class="fw-bold mb-1 text-dark">Address</h6>
+                                <p class="text-muted mb-0">120, 17 Ave Southwest<br>Calgary, Alberta</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-start mb-4">
+                            <div class="fs-4 me-3" style="color: var(--tbi-sage-green);">📞</div>
+                            <div>
+                                <h6 class="fw-bold mb-1 text-dark">Phone</h6>
+                                <p class="text-muted mb-0">587-123-4567</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-start">
+                            <div class="fs-4 me-3" style="color: var(--tbi-sage-green);">📠</div>
+                            <div>
+                                <h6 class="fw-bold mb-1 text-dark">Fax</h6>
+                                <p class="text-muted mb-0">587-123-4578</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
+                <div class="col-lg-7" data-aos="fade-left" data-aos-delay="200">
+                    <div class="p-4 p-md-5 rounded-4 shadow-sm" style="background-color: var(--tbi-bg-light);">
+                        <h4 class="fw-bold mb-3" style="color: var(--tbi-dark-blue);">Send a Message</h4>
+                        <p class="text-muted mb-4">You can leave a message using the contact form below.</p>
+                        
+                        <form>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold small text-dark">Name</label>
+                                    <input type="text" class="form-control" placeholder="Your Name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold small text-dark">Email Address</label>
+                                    <input type="email" class="form-control" placeholder="Your Email" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold small text-dark">Subject</label>
+                                    <input type="text" class="form-control" placeholder="Message Subject" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold small text-dark">Inquiry Type</label>
+                                    <select class="form-select" required>
+                                        <option value="" selected disabled>Select an option...</option>
+                                        <option value="General">General Inquiry</option>
+                                        <option value="Services">Services Information</option>
+                                        <option value="Partnership">Partnerships / Agencies</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label fw-bold small text-dark">Message</label>
+                                    <textarea class="form-control" rows="5" placeholder="How can we help you?" required></textarea>
+                                </div>
+                                <div class="col-12 mt-4">
+                                    <button type="submit" class="btn w-100 py-3 fw-bold text-white shadow-sm" style="background-color: var(--tbi-sage-green); border-radius: 8px; transition: 0.3s;">Send Message</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -335,10 +445,10 @@
     <footer class="text-center">
         <div class="container">
             <div class="footer-logo-box">
-                <img src="logo.jpg" alt="TBI Logo" style="height: 75px;">
+                <img src="logo.jpg" alt="TBI Logo">
             </div>
             <h4 class="text-white mb-2" style="font-family: 'Montserrat', sans-serif;">Transition Bridge Initiative</h4>
-            <p class="text-white-50 mb-0">120, 17 Ave Southwest</p>
+            <p class="text-white-50 mb-0">120, 17 Ave Southwest, Calgary, Alberta</p>
         </div>
     </footer>
 

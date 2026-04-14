@@ -51,10 +51,10 @@
             transition: all 0.4s ease;
         }
         
-        /* MAGIC CSS CROP FOR TOP LOGO - MADE WIDER */
+        /* MAGIC CSS CROP FOR TOP LOGO */
         .navbar-brand {
             height: 65px; 
-            width: 240px; /* <--- INCREASED THIS from 170px so the text isn't cut off */
+            width: 240px; 
             overflow: hidden; 
             position: relative;
             display: block;
@@ -112,7 +112,7 @@
 
         /* About Section */
         .about-section { padding: 120px 0 80px 0; background-color: white; }
-        .about-text { font-size: 1.15rem; line-height: 1.9; color: #555; text-align: left; }
+        .about-text { font-size: 1.15rem; line-height: 1.9; color: #555; text-align: center; } /* <--- CHANGED TO CENTER */
         
         @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
         .floating-card { animation: float 6s ease-in-out infinite; }
@@ -177,7 +177,7 @@
 
         /* Mobile Adjustments */
         @media (max-width: 768px) {
-            .navbar-brand { height: 55px; width: 190px; } /* <--- ALSO INCREASED THIS for mobile phones */
+            .navbar-brand { height: 55px; width: 190px; } 
             .navbar-brand img { height: 160px; }
             .hero-section { padding: 140px 0 100px 0; text-align: center; }
             .hero-content-box { padding: 25px; backdrop-filter: blur(5px); }

@@ -51,11 +51,11 @@
             transition: all 0.4s ease;
         }
         
-        /* MAGIC CSS CROP FOR TOP LOGO */
+        /* MAGIC CSS CROP FOR TOP LOGO - MADE WIDER */
         .navbar-brand {
-            height: 65px; /* This sets the "window" height */
-            width: 170px; /* This sets the "window" width */
-            overflow: hidden; /* This acts like scissors, cutting off the extra white space */
+            height: 65px; 
+            width: 240px; /* <--- INCREASED THIS from 170px so the text isn't cut off */
+            overflow: hidden; 
             position: relative;
             display: block;
         }
@@ -63,10 +63,10 @@
             position: absolute;
             top: 50%;
             left: 0;
-            transform: translateY(-50%); /* Perfectly centers the zoomed image */
-            height: 190px; /* Zooms the image in massively */
+            transform: translateY(-50%); 
+            height: 190px; 
             width: auto;
-            max-width: none; /* Allows the image to break out of Bootstrap's limits so it can be cropped */
+            max-width: none; 
         }
 
         .nav-link {
@@ -118,12 +118,6 @@
         .floating-card { animation: float 6s ease-in-out infinite; }
         .floating-card.delay { animation-delay: 3s; }
 
-        /* Community Partners Section */
-        .partners-section { background-color: white; padding: 40px 0 80px 0; border-bottom: 1px solid #eee; }
-        .partner-logo-box { display: flex; align-items: center; justify-content: center; padding: 20px; color: #b0b0b0; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.5rem; letter-spacing: 1px; transition: all 0.3s ease; cursor: pointer; }
-        .partner-logo-box i { font-size: 2rem; margin-right: 10px; }
-        .partner-logo-box:hover { color: var(--tbi-dark-blue); transform: scale(1.05); }
-
         /* Services Section */
         .services-section { padding: 120px 0; background-color: var(--tbi-bg-light); position: relative; }
         .vecova-card { background: white; border-radius: 15px; border: 1px solid #eaeaea; box-shadow: 0 4px 20px rgba(0,0,0,0.04); transition: all 0.3s ease; height: 100%; display: flex; flex-direction: column; overflow: hidden; text-align: center; cursor: pointer; }
@@ -145,13 +139,6 @@
         .carousel-desc { font-size: 1.1rem; line-height: 1.8; color: #555; }
         .carousel-control-prev, .carousel-control-next { width: 10%; opacity: 0.8; }
         .carousel-control-prev:hover, .carousel-control-next:hover { opacity: 1; }
-
-        /* FAQ Section */
-        .faq-section { padding: 120px 0; background-color: white; }
-        .accordion-item { border: 1px solid #eaeaea; border-radius: 15px !important; margin-bottom: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.02); overflow: hidden; }
-        .accordion-button { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--tbi-dark-blue); padding: 20px 25px; background-color: white; box-shadow: none !important; }
-        .accordion-button:not(.collapsed) { background-color: rgba(103, 139, 101, 0.05); color: var(--tbi-sage-green); border-left: 4px solid var(--tbi-sage-green); }
-        .accordion-body { padding: 20px 25px 30px 25px; line-height: 1.8; color: #555; font-size: 1.05rem; }
 
         /* Contact Section */
         .contact-box { background: white; border-radius: 20px; border-top: 6px solid var(--tbi-dark-blue); box-shadow: 0 15px 35px rgba(0,0,0,0.08); }
@@ -182,26 +169,25 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%); /* Perfectly centers the zoomed image */
-            height: 250px; /* Zooms the image in to cut the white space */
+            transform: translate(-50%, -50%); 
+            height: 250px; 
             width: auto;
             max-width: none;
         }
 
         /* Mobile Adjustments */
         @media (max-width: 768px) {
-            .navbar-brand { height: 55px; width: 140px; } /* Slightly smaller crop window on phones */
+            .navbar-brand { height: 55px; width: 190px; } /* <--- ALSO INCREASED THIS for mobile phones */
             .navbar-brand img { height: 160px; }
             .hero-section { padding: 140px 0 100px 0; text-align: center; }
             .hero-content-box { padding: 25px; backdrop-filter: blur(5px); }
             .hero-section h1 { font-size: 2.8rem; }
             .section-title { font-size: 2.2rem; }
-            .about-section, .services-section, .faq-section { padding: 80px 0; }
+            .about-section, .services-section { padding: 80px 0; }
             .title-divider { margin-left: auto; margin-right: auto; }
             .nav-link { margin-left: 0; padding: 12px 0; text-align: center; }
             .floating-card { animation: none; }
             .carousel-item { padding: 10px 40px 30px 40px; } 
-            .partner-logo-box { margin-bottom: 15px; }
         }
     </style>
 </head>
@@ -219,7 +205,6 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                 </ul>
             </div>
@@ -263,7 +248,7 @@
                         <h3 class="fw-bold mt-5 mb-3" style="color: var(--tbi-dark-blue); font-family: 'Montserrat', sans-serif;">Description of the Transition Bridge Initiative (TBI)</h3>
                         <p>The Transition Bridge Initiative is an interim support program to address the most critical service gap between FSCD transitioning to the PDD service system. The program is designed to support youth ages 17-22 years old with developmental disabilities who are awaiting service adult funding through PDD.</p>
                         <p>This agency targets individuals who may lack permanent housing, family support, or formal medical documentation with no established guardianship. Particularly for those individuals experiencing living instability, under supported living facility, or out of home program funded by FSCD who are at risk of homelessness, crisis, ineligibility of funding, and loss of continuity care.</p>
-                        <p class="fw-bold p-4 mt-4 rounded-4" style="background-color: rgba(103, 139, 101, 0.05); color: var(--tbi-sage-green); border-left: 4px solid var(--tbi-sage-green);">TBI will operate five days in a week following a community-based hybrid model merging in-center programming with community access, providing both development of skills and continuity of care.</p>
+                        <p class="fw-bold p-4 mt-4 rounded-4" style="background-color: rgba(103, 139, 101, 0.05); color: var(--tbi-sage-green); border-left: 4px solid var(--tbi-sage-green);">TBI will operate 7 days a week following a community-based hybrid model merging in-center programming with community access, providing both development of skills and continuity of care.</p>
                     </div>
 
                     <div class="row mt-5 g-4">
@@ -291,30 +276,10 @@
         </div>
     </section>
 
-    <section class="partners-section">
-        <div class="container">
-            <p class="text-center text-muted fw-bold mb-4" style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem;" data-aos="fade-up">In Collaboration With Community Agencies</p>
-            <div class="row justify-content-center align-items-center">
-                <div class="col-6 col-md-3 text-center" data-aos="fade-up" data-aos-delay="100">
-                    <div class="partner-logo-box"><i class="bi bi-hospital"></i> AHS</div>
-                </div>
-                <div class="col-6 col-md-3 text-center" data-aos="fade-up" data-aos-delay="200">
-                    <div class="partner-logo-box"><i class="bi bi-diagram-2"></i> SCOPE</div>
-                </div>
-                <div class="col-6 col-md-3 text-center" data-aos="fade-up" data-aos-delay="300">
-                    <div class="partner-logo-box"><i class="bi bi-people"></i> VECOVA</div>
-                </div>
-                <div class="col-6 col-md-3 text-center" data-aos="fade-up" data-aos-delay="400">
-                    <div class="partner-logo-box"><i class="bi bi-building"></i> DDRC</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section id="services" class="services-section">
         <div class="container">
             <div class="text-center mb-5" data-aos="fade-up">
-                <h2 class="section-title">Explore Our Services</h2>
+                <h2 class="section-title">Programs/Services</h2>
                 <div class="title-divider mx-auto"></div>
                 <p class="text-muted">Click any service to view full details.</p>
             </div>
@@ -443,71 +408,6 @@
             </div>
         </div>
     </div>
-
-    <section id="faq" class="faq-section">
-        <div class="container">
-            <div class="text-center mb-5" data-aos="fade-up">
-                <h2 class="section-title">Frequently Asked Questions</h2>
-                <div class="title-divider mx-auto"></div>
-                <p class="text-muted">Common questions about the Transition Bridge Initiative.</p>
-            </div>
-
-            <div class="row justify-content-center">
-                <div class="col-lg-8" data-aos="fade-up" data-aos-delay="100">
-                    <div class="accordion" id="tbiFAQ">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
-                                    Who is eligible for the Transition Bridge Initiative?
-                                </button>
-                            </h2>
-                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#tbiFAQ">
-                                <div class="accordion-body">
-                                    We support youth ages 17-22 years old with developmental disabilities who are transitioning from Family Support for Children with Disabilities (FSCD) and are currently awaiting adult funding through Persons with Developmental Disabilities (PDD). We particularly target individuals experiencing living instability or those at risk of homelessness.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
-                                    Do I need formal medical documentation to apply?
-                                </button>
-                            </h2>
-                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#tbiFAQ">
-                                <div class="accordion-body">
-                                    No. We specifically target individuals who may lack permanent housing, family support, or formal medical documentation. Through our Health and Assessment Navigation service, we will help connect youth to community clinics and medical professionals to secure the necessary diagnostic assessments.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
-                                    How does the Transitional Housing work?
-                                </button>
-                            </h2>
-                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#tbiFAQ">
-                                <div class="accordion-body">
-                                    Our Transitional Housing provides short-term safe housing, which may include shared apartments, group homes, or emergency sheltered apartments. This includes ongoing supervision, safety stability, daily routine support (meals, hygiene, budgeting), and a caseworker or life skills mentor on site.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
-                                    Will TBI be my permanent support agency?
-                                </button>
-                            </h2>
-                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#tbiFAQ">
-                                <div class="accordion-body">
-                                    TBI is designed to be an <strong>interim support program</strong> to address the critical service gap during transition. However, through our Agency Matching program, we actively collaborate with existing long-term services (such as SCOPE, Vecova, and DDRC) to find the best-fit permanent disability support agency based on comprehensive needs and preferences.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <section id="contact" class="py-5" style="background-color: var(--tbi-bg-light);">
         <div class="container py-5">

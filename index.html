@@ -23,10 +23,8 @@
             --glass-bg: rgba(255, 255, 255, 0.85);
         }
 
-        /* Custom Selection Highlight */
         ::selection { background: var(--tbi-sage-green); color: white; }
 
-        /* Custom Themed Scrollbar */
         ::-webkit-scrollbar { width: 10px; }
         ::-webkit-scrollbar-track { background: #f1f1f1; }
         ::-webkit-scrollbar-thumb { background: var(--tbi-dark-blue); border-radius: 5px; }
@@ -40,9 +38,7 @@
             width: 100%;
         }
 
-        h1, h2, h3, h4, h5, h6, .navbar-brand {
-            font-family: 'Montserrat', sans-serif;
-        }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', sans-serif; }
 
         /* Glassmorphism Navbar */
         .navbar { 
@@ -51,16 +47,31 @@
             -webkit-backdrop-filter: blur(15px);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
             border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 5px 0; 
+            padding: 10px 0; 
             transition: all 0.4s ease;
         }
-        .navbar-brand img {
-            height: 120px; 
-            object-fit: contain;
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+        
+        /* MAGIC CSS CROP FOR TOP LOGO */
+        .navbar-brand {
+            height: 65px; /* This sets the "window" height */
+            width: 170px; /* This sets the "window" width */
+            overflow: hidden; /* This acts like scissors, cutting off the extra white space */
+            position: relative;
+            display: block;
         }
+        .navbar-brand img {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%); /* Perfectly centers the zoomed image */
+            height: 190px; /* Zooms the image in massively */
+            width: auto;
+            max-width: none; /* Allows the image to break out of Bootstrap's limits so it can be cropped */
+        }
+
         .nav-link {
             color: var(--tbi-dark-blue) !important;
+            font-family: 'Montserrat', sans-serif;
             font-weight: 700;
             margin-left: 25px;
             text-transform: uppercase;
@@ -69,7 +80,6 @@
             position: relative;
             transition: color 0.3s;
         }
-        /* Animated underline on hover for links */
         .nav-link::after {
             content: '';
             position: absolute;
@@ -83,230 +93,115 @@
         .nav-link:hover::after { width: 100%; }
         .nav-link:hover { color: var(--tbi-sage-green) !important; }
 
-        /* Hero Section with Video Background */
-        .hero-section {
-            position: relative;
-            color: white;
-            padding: 220px 0 200px 0;
-            overflow: hidden; /* Keeps the video contained */
-        }
-        
-        /* New Video Styling */
-        .hero-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 0;
-        }
-        
-        /* New Gradient Overlay to keep text readable */
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(26, 52, 92, 0.85) 0%, rgba(103, 139, 101, 0.85) 100%);
-            z-index: 1;
-        }
-        
-        /* Ensure the text and wave divider sit ON TOP of the video and overlay */
-        .hero-section .container,
-        .custom-shape-divider-bottom {
-            position: relative;
-            z-index: 2;
-        }
+        /* Hero Section */
+        .hero-section { position: relative; color: white; padding: 220px 0 200px 0; overflow: hidden; }
+        .hero-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(26, 52, 92, 0.85) 0%, rgba(103, 139, 101, 0.85) 100%); z-index: 1; }
+        .hero-section .container, .custom-shape-divider-bottom { position: relative; z-index: 2; }
+        .hero-content-box { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); padding: 40px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+        .hero-section h1 { font-size: 4.5rem; font-weight: 900; line-height: 1.1; margin-bottom: 20px; letter-spacing: -1px; text-shadow: 2px 2px 10px rgba(0,0,0,0.3); }
+        .hero-section p { font-size: 1.3rem; font-weight: 300; color: #f8f9fa; }
 
-        .hero-content-box {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-        }
-        .hero-section h1 {
-            font-size: 4.5rem;
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 20px;
-            letter-spacing: -1px;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-        }
-        .hero-section p {
-            font-size: 1.3rem;
-            font-weight: 300;
-            color: #f8f9fa;
-        }
-
-        /* SVG Shape Divider separating Hero and About */
-        .custom-shape-divider-bottom {
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            width: 100%;
-            overflow: hidden;
-            line-height: 0;
-            transform: rotate(180deg);
-        }
-        .custom-shape-divider-bottom svg {
-            position: relative;
-            display: block;
-            width: calc(100% + 1.3px);
-            height: 80px;
-        }
+        .custom-shape-divider-bottom { position: absolute; bottom: -1px; left: 0; width: 100%; overflow: hidden; line-height: 0; transform: rotate(180deg); }
+        .custom-shape-divider-bottom svg { position: relative; display: block; width: calc(100% + 1.3px); height: 80px; }
         .custom-shape-divider-bottom .shape-fill { fill: #ffffff; }
 
-        /* Section Titles */
-        .section-title { 
-            color: var(--tbi-dark-blue); 
-            font-weight: 900; 
-            margin-bottom: 15px;
-            font-size: 2.8rem;
-            letter-spacing: -1px;
-        }
-        .title-divider {
-            width: 100px;
-            height: 6px;
-            background: linear-gradient(90deg, var(--tbi-dark-blue), var(--tbi-sage-green));
-            margin-bottom: 40px;
-            border-radius: 5px;
-        }
+        /* Global Typography */
+        .section-title { color: var(--tbi-dark-blue); font-weight: 900; margin-bottom: 15px; font-size: 2.8rem; letter-spacing: -1px; }
+        .title-divider { width: 100px; height: 6px; background: linear-gradient(90deg, var(--tbi-dark-blue), var(--tbi-sage-green)); margin-bottom: 40px; border-radius: 5px; }
 
         /* About Section */
-        .about-section { padding: 120px 0 100px 0; background-color: white; }
+        .about-section { padding: 120px 0 80px 0; background-color: white; }
         .about-text { font-size: 1.15rem; line-height: 1.9; color: #555; text-align: left; }
         
-        /* Continuous Floating Animation for Cards */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
         .floating-card { animation: float 6s ease-in-out infinite; }
         .floating-card.delay { animation-delay: 3s; }
 
-        /* Premium Services Cards */
+        /* Community Partners Section */
+        .partners-section { background-color: white; padding: 40px 0 80px 0; border-bottom: 1px solid #eee; }
+        .partner-logo-box { display: flex; align-items: center; justify-content: center; padding: 20px; color: #b0b0b0; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.5rem; letter-spacing: 1px; transition: all 0.3s ease; cursor: pointer; }
+        .partner-logo-box i { font-size: 2rem; margin-right: 10px; }
+        .partner-logo-box:hover { color: var(--tbi-dark-blue); transform: scale(1.05); }
+
+        /* Services Section */
         .services-section { padding: 120px 0; background-color: var(--tbi-bg-light); position: relative; }
-        .service-card { 
-            background: white;
-            border-radius: 20px;
-            border: 1px solid rgba(0,0,0,0.03);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
-            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-            padding: 40px 30px;
-            height: 100%;
-            position: relative;
-            z-index: 1;
-            overflow: hidden; 
-        }
-        /* The Giant Watermark Number */
-        .watermark-number {
-            position: absolute;
-            bottom: -30px;
-            right: -10px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 8rem;
-            font-weight: 900;
-            color: var(--tbi-river-blue);
-            opacity: 0.05;
-            z-index: -1;
-            transition: all 0.5s ease;
-        }
-        .service-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(26, 52, 92, 0.15);
-            border-color: var(--tbi-sage-green);
-        }
-        .service-card:hover .watermark-number {
-            transform: scale(1.2) translateY(-10px);
-            opacity: 0.15;
-            color: var(--tbi-sage-green);
-        }
-        .service-card h4 { font-weight: 800; margin-bottom: 15px; color: var(--tbi-dark-blue); }
-        .service-card p { font-size: 0.95rem; line-height: 1.7; color: #666; }
+        .vecova-card { background: white; border-radius: 15px; border: 1px solid #eaeaea; box-shadow: 0 4px 20px rgba(0,0,0,0.04); transition: all 0.3s ease; height: 100%; display: flex; flex-direction: column; overflow: hidden; text-align: center; cursor: pointer; }
+        .vecova-card:hover { transform: translateY(-8px); box-shadow: 0 15px 30px rgba(26, 52, 92, 0.1); border-color: var(--tbi-sage-green); }
+        .vecova-card-header { background: linear-gradient(135deg, var(--tbi-dark-blue), #2a4c7d); padding: 40px 20px; color: white; font-size: 3.5rem; transition: background 0.3s ease; }
+        .vecova-card:hover .vecova-card-header { background: linear-gradient(135deg, var(--tbi-sage-green), var(--tbi-dark-blue)); }
+        .vecova-card-body { padding: 30px 20px; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .vecova-card-body h4 { font-weight: 800; color: var(--tbi-dark-blue); margin-bottom: 15px; font-size: 1.25rem; }
+        .vecova-learn-more { font-weight: 700; color: var(--tbi-sage-green); text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem; display: flex; align-items: center; margin-top: auto; }
+        .vecova-learn-more i { margin-left: 8px; transition: transform 0.3s; }
+        .vecova-card:hover .vecova-learn-more i { transform: translateX(5px); }
+
+        /* Modal Slider */
+        .modal-content { border-radius: 20px; border: none; box-shadow: 0 25px 50px rgba(0,0,0,0.2); }
+        .modal-header { border-bottom: none; padding: 20px 30px 0 30px; }
+        .carousel-item { padding: 20px 80px 50px 80px; text-align: center; }
+        .carousel-icon { font-size: 4rem; color: var(--tbi-sage-green); margin-bottom: 20px; }
+        .carousel-title { color: var(--tbi-dark-blue); font-weight: 800; margin-bottom: 20px; }
+        .carousel-desc { font-size: 1.1rem; line-height: 1.8; color: #555; }
+        .carousel-control-prev, .carousel-control-next { width: 10%; opacity: 0.8; }
+        .carousel-control-prev:hover, .carousel-control-next:hover { opacity: 1; }
+
+        /* FAQ Section */
+        .faq-section { padding: 120px 0; background-color: white; }
+        .accordion-item { border: 1px solid #eaeaea; border-radius: 15px !important; margin-bottom: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.02); overflow: hidden; }
+        .accordion-button { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--tbi-dark-blue); padding: 20px 25px; background-color: white; box-shadow: none !important; }
+        .accordion-button:not(.collapsed) { background-color: rgba(103, 139, 101, 0.05); color: var(--tbi-sage-green); border-left: 4px solid var(--tbi-sage-green); }
+        .accordion-body { padding: 20px 25px 30px 25px; line-height: 1.8; color: #555; font-size: 1.05rem; }
 
         /* Contact Section */
-        .contact-box {
-            background: white;
-            border-radius: 20px;
-            border-top: 6px solid var(--tbi-dark-blue);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
-        }
-        .contact-icon {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
-            background-color: rgba(103, 139, 101, 0.1);
-            color: var(--tbi-sage-green);
-            font-size: 1.5rem;
-        }
-        .form-control, .form-select {
-            border-radius: 10px;
-            padding: 14px 18px;
-            border: 1px solid #e0e0e0;
-            background-color: #fafafa;
-            transition: all 0.3s;
-        }
-        .form-control:focus, .form-select:focus {
-            background-color: white;
-            border-color: var(--tbi-sage-green);
-            box-shadow: 0 0 0 4px rgba(103, 139, 101, 0.15);
-        }
-        .btn-submit {
-            background: linear-gradient(135deg, var(--tbi-sage-green), var(--tbi-dark-blue));
-            border: none;
-            color: white;
-            padding: 16px;
-            border-radius: 10px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            transition: all 0.4s ease;
-        }
-        .btn-submit:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(26, 52, 92, 0.3);
-            color: white;
-        }
+        .contact-box { background: white; border-radius: 20px; border-top: 6px solid var(--tbi-dark-blue); box-shadow: 0 15px 35px rgba(0,0,0,0.08); }
+        .contact-icon { display: inline-flex; align-items: center; justify-content: center; width: 50px; height: 50px; border-radius: 12px; background-color: rgba(103, 139, 101, 0.1); color: var(--tbi-sage-green); font-size: 1.5rem; }
+        .form-control, .form-select { border-radius: 10px; padding: 14px 18px; border: 1px solid #e0e0e0; background-color: #fafafa; transition: all 0.3s; }
+        .form-control:focus, .form-select:focus { background-color: white; border-color: var(--tbi-sage-green); box-shadow: 0 0 0 4px rgba(103, 139, 101, 0.15); }
+        .btn-submit { background: linear-gradient(135deg, var(--tbi-sage-green), var(--tbi-dark-blue)); border: none; color: white; padding: 16px; border-radius: 10px; font-weight: 700; letter-spacing: 1px; transition: all 0.4s ease; }
+        .btn-submit:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(26, 52, 92, 0.3); color: white; }
 
         /* Footer */
-        footer {
-            background: linear-gradient(to bottom, #112240, var(--tbi-dark-blue)); 
-            color: white;
-            padding: 80px 0 50px 0;
+        footer { background: linear-gradient(to bottom, #112240, var(--tbi-dark-blue)); color: white; padding: 80px 0 50px 0; position: relative; }
+        
+        /* MAGIC CSS CROP FOR FOOTER LOGO */
+        .footer-logo-box { 
+            background-color: white; 
+            border-radius: 20px; 
+            display: inline-block; 
+            margin-bottom: 30px; 
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3); 
+            transition: transform 0.3s ease; 
+            height: 90px;
+            width: 240px;
+            overflow: hidden;
             position: relative;
         }
-        .footer-logo-box {
-            background-color: white;
-            padding: 25px 40px;
-            border-radius: 20px;
-            display: inline-block;
-            margin-bottom: 30px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease;
-        }
         .footer-logo-box:hover { transform: scale(1.05); }
-        .footer-logo-box img { height: 110px; object-fit: contain; }
+        .footer-logo-box img { 
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Perfectly centers the zoomed image */
+            height: 250px; /* Zooms the image in to cut the white space */
+            width: auto;
+            max-width: none;
+        }
 
-        /* =========================================
-           MOBILE RESPONSIVENESS
-           ========================================= */
+        /* Mobile Adjustments */
         @media (max-width: 768px) {
-            .navbar-brand img { height: 85px; }
+            .navbar-brand { height: 55px; width: 140px; } /* Slightly smaller crop window on phones */
+            .navbar-brand img { height: 160px; }
             .hero-section { padding: 140px 0 100px 0; text-align: center; }
             .hero-content-box { padding: 25px; backdrop-filter: blur(5px); }
             .hero-section h1 { font-size: 2.8rem; }
             .section-title { font-size: 2.2rem; }
-            .about-section, .services-section { padding: 80px 0; }
+            .about-section, .services-section, .faq-section { padding: 80px 0; }
             .title-divider { margin-left: auto; margin-right: auto; }
             .nav-link { margin-left: 0; padding: 12px 0; text-align: center; }
             .floating-card { animation: none; }
+            .carousel-item { padding: 10px 40px 30px 40px; } 
+            .partner-logo-box { margin-bottom: 15px; }
         }
     </style>
 </head>
@@ -324,6 +219,7 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                 </ul>
             </div>
@@ -331,14 +227,11 @@
     </nav>
 
     <header class="hero-section">
-        
         <video autoplay muted loop playsinline class="hero-video">
             <source src="Photo_To_Animated_Website_Video.mp4" type="video/mp4">
             Your browser does not support HTML5 video.
         </video>
-        
         <div class="hero-overlay"></div>
-
         <div class="container">
             <div class="row">
                 <div class="col-lg-7" data-aos="fade-up" data-aos-duration="1200">
@@ -349,7 +242,6 @@
                 </div>
             </div>
         </div>
-        
         <div class="custom-shape-divider-bottom">
             <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
                 <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
@@ -394,7 +286,26 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <section class="partners-section">
+        <div class="container">
+            <p class="text-center text-muted fw-bold mb-4" style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem;" data-aos="fade-up">In Collaboration With Community Agencies</p>
+            <div class="row justify-content-center align-items-center">
+                <div class="col-6 col-md-3 text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="partner-logo-box"><i class="bi bi-hospital"></i> AHS</div>
+                </div>
+                <div class="col-6 col-md-3 text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="partner-logo-box"><i class="bi bi-diagram-2"></i> SCOPE</div>
+                </div>
+                <div class="col-6 col-md-3 text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="partner-logo-box"><i class="bi bi-people"></i> VECOVA</div>
+                </div>
+                <div class="col-6 col-md-3 text-center" data-aos="fade-up" data-aos-delay="400">
+                    <div class="partner-logo-box"><i class="bi bi-building"></i> DDRC</div>
                 </div>
             </div>
         </div>
@@ -403,65 +314,202 @@
     <section id="services" class="services-section">
         <div class="container">
             <div class="text-center mb-5" data-aos="fade-up">
-                <h2 class="section-title">Programs/Services:</h2>
+                <h2 class="section-title">Explore Our Services</h2>
                 <div class="title-divider mx-auto"></div>
+                <p class="text-muted">Click any service to view full details.</p>
             </div>
             
             <div class="row g-4 justify-content-center">
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                    <div class="service-card">
-                        <span class="watermark-number">01</span>
-                        <h4>Transitional Housing / Supported living</h4>
-                        <p>this is short term safe housing (shared apartments, group homes, or emergency sheltered apartments) which includes ongoing supervision and support ensuring safety and stability. Daily routine supports involve meals, hygiene, budgeting, and laundry while having a caseworker or life skills mentor on site.</p>
+                <div class="col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="vecova-card" onclick="openServiceModal(0)">
+                        <div class="vecova-card-header"><i class="bi bi-house-door"></i></div>
+                        <div class="vecova-card-body">
+                            <h4>Transitional Housing</h4>
+                            <div class="vecova-learn-more">LEARN MORE <i class="bi bi-arrow-right"></i></div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                    <div class="service-card">
-                        <span class="watermark-number">02</span>
-                        <h4>Life Skills Training</h4>
-                        <p>provides structured hands-on training sessions with living skills such as cooking, cleaning, shopping and budgeting, community navigation (transits), personal hygiene, social skills, and self-advocacy.</p>
+                <div class="col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="vecova-card" onclick="openServiceModal(1)">
+                        <div class="vecova-card-header"><i class="bi bi-person-check"></i></div>
+                        <div class="vecova-card-body">
+                            <h4>Life Skills Training</h4>
+                            <div class="vecova-learn-more">LEARN MORE <i class="bi bi-arrow-right"></i></div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                    <div class="service-card">
-                        <span class="watermark-number">03</span>
-                        <h4>Health and Assessment Navigation</h4>
-                        <p>connect youth to medical assessments and subsidized services through AHS and community clinics to access medical professionals (psychologists, psychiatrists, developmental pediatricians, FASD and ASD clinics). This includes coordinating paperworks and consents for diagnostics while tracking functional limitations.</p>
+                <div class="col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="vecova-card" onclick="openServiceModal(2)">
+                        <div class="vecova-card-header"><i class="bi bi-heart-pulse"></i></div>
+                        <div class="vecova-card-body">
+                            <h4>Health Navigation</h4>
+                            <div class="vecova-learn-more">LEARN MORE <i class="bi bi-arrow-right"></i></div>
+                        </div>
                     </div>
                 </div>
-                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
-                    <div class="service-card">
-                        <span class="watermark-number">04</span>
-                        <h4>Mental Health</h4>
-                        <p>provision of trauma informed case managements for youths who are vulnerable with depression, behavioral crises, and social isolation, thus, access to counselling through community mental health is supported while waiting for formal diagnosis.</p>
+                 <div class="col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="vecova-card" onclick="openServiceModal(3)">
+                        <div class="vecova-card-header"><i class="bi bi-yin-yang"></i></div>
+                        <div class="vecova-card-body">
+                            <h4>Mental Health</h4>
+                            <div class="vecova-learn-more">LEARN MORE <i class="bi bi-arrow-right"></i></div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
-                    <div class="service-card">
-                        <span class="watermark-number">05</span>
-                        <h4>Employment readiness (prevocational training)</h4>
-                        <p>skill building in employment education such as pre-employment training (resume making, interview skills, and social skills), including life-skills integration or adult education program.</p>
+                <div class="col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="500">
+                    <div class="vecova-card" onclick="openServiceModal(4)">
+                        <div class="vecova-card-header"><i class="bi bi-briefcase"></i></div>
+                        <div class="vecova-card-body">
+                            <h4>Employment Readiness</h4>
+                            <div class="vecova-learn-more">LEARN MORE <i class="bi bi-arrow-right"></i></div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
-                    <div class="service-card">
-                        <span class="watermark-number">06</span>
-                        <h4>Case Management Navigation</h4>
-                        <p>assist individuals registering to government programs such as AISH, TAP, and Alberta Health. Help secure diagnostic assessments, coordinate to mental health support services, and keep records of functional progress for PDD eligibility and ongoing application.</p>
+                <div class="col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="600">
+                    <div class="vecova-card" onclick="openServiceModal(5)">
+                        <div class="vecova-card-header"><i class="bi bi-folder2-open"></i></div>
+                        <div class="vecova-card-body">
+                            <h4>Case Management</h4>
+                            <div class="vecova-learn-more">LEARN MORE <i class="bi bi-arrow-right"></i></div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="700">
-                    <div class="service-card">
-                        <span class="watermark-number">07</span>
-                        <h4>Agency Matching</h4>
-                        <p>a program focusing on transition match hubs to navigate the adult disability system. This aspires to collaborate with existing adult long-term services such as SCOPE, Vecova, and DDRC aiming for a best fit disability support agency for an individual based on their diagnostics, comprehensive needs, and preferences assessment.</p>
+                <div class="col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="700">
+                    <div class="vecova-card" onclick="openServiceModal(6)">
+                        <div class="vecova-card-header"><i class="bi bi-diagram-3"></i></div>
+                        <div class="vecova-card-body">
+                            <h4>Agency Matching</h4>
+                            <div class="vecova-learn-more">LEARN MORE <i class="bi bi-arrow-right"></i></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="py-5" style="background-color: white;">
+    <div class="modal fade" id="servicesModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-0">
+                    <div id="servicesCarousel" class="carousel carousel-dark slide" data-bs-ride="false">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="carousel-icon"><i class="bi bi-house-door"></i></div>
+                                <h3 class="carousel-title">Transitional Housing / Supported Living</h3>
+                                <p class="carousel-desc">This is short term safe housing (shared apartments, group homes, or emergency sheltered apartments) which includes ongoing supervision and support ensuring safety and stability. Daily routine supports involve meals, hygiene, budgeting, and laundry while having a caseworker or life skills mentor on site.</p>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="carousel-icon"><i class="bi bi-person-check"></i></div>
+                                <h3 class="carousel-title">Life Skills Training</h3>
+                                <p class="carousel-desc">Provides structured hands-on training sessions with living skills such as cooking, cleaning, shopping and budgeting, community navigation (transits), personal hygiene, social skills, and self-advocacy.</p>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="carousel-icon"><i class="bi bi-heart-pulse"></i></div>
+                                <h3 class="carousel-title">Health and Assessment Navigation</h3>
+                                <p class="carousel-desc">Connect youth to medical assessments and subsidized services through AHS and community clinics to access medical professionals (psychologists, psychiatrists, developmental pediatricians, FASD and ASD clinics). This includes coordinating paperworks and consents for diagnostics while tracking functional limitations.</p>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="carousel-icon"><i class="bi bi-yin-yang"></i></div>
+                                <h3 class="carousel-title">Mental Health</h3>
+                                <p class="carousel-desc">Provision of trauma informed case managements for youths who are vulnerable with depression, behavioral crises, and social isolation, thus, access to counselling through community mental health is supported while waiting for formal diagnosis.</p>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="carousel-icon"><i class="bi bi-briefcase"></i></div>
+                                <h3 class="carousel-title">Employment Readiness</h3>
+                                <p class="carousel-desc">Skill building in employment education such as pre-employment training (resume making, interview skills, and social skills), including life-skills integration or adult education program.</p>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="carousel-icon"><i class="bi bi-folder2-open"></i></div>
+                                <h3 class="carousel-title">Case Management Navigation</h3>
+                                <p class="carousel-desc">Assist individuals registering to government programs such as AISH, TAP, and Alberta Health. Help secure diagnostic assessments, coordinate to mental health support services, and keep records of functional progress for PDD eligibility and ongoing application.</p>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="carousel-icon"><i class="bi bi-diagram-3"></i></div>
+                                <h3 class="carousel-title">Agency Matching</h3>
+                                <p class="carousel-desc">A program focusing on transition match hubs to navigate the adult disability system. This aspires to collaborate with existing adult long-term services such as SCOPE, Vecova, and DDRC aiming for a best fit disability support agency for an individual based on their diagnostics, comprehensive needs, and preferences assessment.</p>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#servicesCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#servicesCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="faq" class="faq-section">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <div class="title-divider mx-auto"></div>
+                <p class="text-muted">Common questions about the Transition Bridge Initiative.</p>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-8" data-aos="fade-up" data-aos-delay="100">
+                    <div class="accordion" id="tbiFAQ">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                    Who is eligible for the Transition Bridge Initiative?
+                                </button>
+                            </h2>
+                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#tbiFAQ">
+                                <div class="accordion-body">
+                                    We support youth ages 17-22 years old with developmental disabilities who are transitioning from Family Support for Children with Disabilities (FSCD) and are currently awaiting adult funding through Persons with Developmental Disabilities (PDD). We particularly target individuals experiencing living instability or those at risk of homelessness.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                    Do I need formal medical documentation to apply?
+                                </button>
+                            </h2>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#tbiFAQ">
+                                <div class="accordion-body">
+                                    No. We specifically target individuals who may lack permanent housing, family support, or formal medical documentation. Through our Health and Assessment Navigation service, we will help connect youth to community clinics and medical professionals to secure the necessary diagnostic assessments.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                    How does the Transitional Housing work?
+                                </button>
+                            </h2>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#tbiFAQ">
+                                <div class="accordion-body">
+                                    Our Transitional Housing provides short-term safe housing, which may include shared apartments, group homes, or emergency sheltered apartments. This includes ongoing supervision, safety stability, daily routine support (meals, hygiene, budgeting), and a caseworker or life skills mentor on site.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                    Will TBI be my permanent support agency?
+                                </button>
+                            </h2>
+                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#tbiFAQ">
+                                <div class="accordion-body">
+                                    TBI is designed to be an <strong>interim support program</strong> to address the critical service gap during transition. However, through our Agency Matching program, we actively collaborate with existing long-term services (such as SCOPE, Vecova, and DDRC) to find the best-fit permanent disability support agency based on comprehensive needs and preferences.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-5" style="background-color: var(--tbi-bg-light);">
         <div class="container py-5">
             <div class="text-center mb-5" data-aos="fade-up">
                 <h2 class="section-title">Contact Us</h2>
@@ -500,7 +548,7 @@
                 </div>
 
                 <div class="col-lg-7" data-aos="fade-left" data-aos-delay="200">
-                    <div class="p-4 p-md-5 rounded-4 shadow-sm" style="background-color: #f8f9fa; border: 1px solid #eee;">
+                    <div class="p-4 p-md-5 rounded-4 shadow-sm" style="background-color: white; border: 1px solid #eee;">
                         <h4 class="fw-bold mb-3" style="color: var(--tbi-dark-blue);">Send a Message</h4>
                         <p class="text-muted mb-4">You can leave a message using the contact form below.</p>
                         
@@ -559,13 +607,14 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Initialize animations with premium settings
-        AOS.init({
-            once: true,
-            offset: 80,
-            duration: 800,
-            easing: 'ease-out-cubic'
-        });
+        AOS.init({ once: true, offset: 80, duration: 800, easing: 'ease-out-cubic' });
+        function openServiceModal(slideIndex) {
+            var myModal = new bootstrap.Modal(document.getElementById('servicesModal'));
+            var myCarousel = document.getElementById('servicesCarousel');
+            var carousel = bootstrap.Carousel.getOrCreateInstance(myCarousel);
+            myModal.show();
+            carousel.to(slideIndex); 
+        }
     </script>
 </body>
 </html>
